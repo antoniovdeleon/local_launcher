@@ -1,15 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'businesses/index'
-
-  get 'businesses/show'
-
-  get 'businesses/new'
-
-  get 'businesses/edit'
-
-  get 'businesses/destroy'
-
   root 'site#index'
   # users routes
   get "/signup", to: "users#new"
@@ -21,5 +11,7 @@ Rails.application.routes.draw do
   get "/logout", to: "sessions#destroy"
   # post "/sessions", to: "sessions#create"
   resources :sessions, only: [:create]
+
+  resources :businesses
 
 end

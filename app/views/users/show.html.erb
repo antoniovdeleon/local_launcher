@@ -1,2 +1,37 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="row">
+  <div class="col-md-4">
+    <h3>Hello <%= current_user.user_name %></h3>
+    <hr>
+    <p><strong>Email:</strong> <%= current_user.email %></p>
+    <p><strong>You're Interested In:</strong> <%= nil %></p>
+    <div>
+    	<a>Shorty's Candy Shop</a>
+    	<p>opening in 25 days</p>
+    </div>
+    <br>
+   <button class="btn btn-success"> Find Businesses Opening Up!</button>
+  </div>
+
+	<% if current_user.businesses.any? %>
+  <div class="col-md-8">
+    <h2>Your Business</h2>
+    <hr>
+      <% current_user.businesses.each do |business| %>
+        <h4>
+          <%= business.business_name %>
+          <span class="pull-right">
+            <%= link_to "Go To Your Business Page", business_path(business), class: "btn btn-default pull-right" %>
+          </span>
+        </h4>
+        <!-- count of people interested in the business could go here -->
+        <p><%= nil %></p>
+        <hr>
+      <% end %>
+     <%= link_to "Add Another Business", new_business_path, class: "btn btn-default" %>
+    <% else %>
+      <p>Are You A Business Owner?</p>
+      <%= link_to "Add Your Business", new_business_path, class: "btn btn-default" %>
+      <hr>
+    <% end %>
+    
+</div>
