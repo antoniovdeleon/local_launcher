@@ -1,32 +1,4 @@
-<div class="col-sm-6 col-sm-offset-3">
-  <br>
-    <div class="signupbox">
-      <legend>Add Your Business</legend>
-      <br>
-      <%= form_for @business do |f| %>
-      <!-- #todo -->
-      <!-- maybe it would be a good idea to have this form really short and have it where they can edit it later so they can quickly create their profile before getting bogged down with writing all this information -->
-        <%= f.label :busines_name, "Business Name" %>:
-        <%= f.text_field :business_name, class:"form-control", placeholder: "ex. ScanForKeeps",required: true %><br />
-        <%= f.label :address, "Address" %>:
-        <%= f.text_field :address, class:"form-control", placeholder: "ex. 1234 Abc Ave. San Francisco, CA 12345",required: true %>
-        <p class="help-block">All businesses must have a store presence</p><br />
-        <%= f.label :category, "Type of Business" %>:
-        <%= f.text_field :category, class:"form-control", placeholder: "ex. Media Preservation Service",required: true %><br />
-        <%= f.label :website, "Website Url" %>:
-        <%= f.text_field :website, class:"form-control", placeholder: "ex. www.scanforkeeps.com" %>
-        <p class="help-block">If you don't have one yet, you could still add it later</p> <br>
-        <%= f.label :introduction, "Introduction" %>:
-        <%= f.text_area :introduction , class:"form-control", placeholder: "Hi, we're ScanForKeeps and we're excited to opening up soon to help you digitize your media!",required: true %>
-        <!-- # todo -->
-        <!-- add a date picker for when the business is expected to open up -->
-        <br>
-        <p class="help-block">You will still be able to make changes after submitting</p> 
-        <%= f.submit "Submit", class:"btn btn-primary" %>
-  
-      <% end %>
-      <br>
-      <br>
-    </div>
-  </div>
+<div class="well">
+<h3><center>Add Your Business</center> </h3>
 </div>
+<%= render 'form' %>
