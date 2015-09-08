@@ -1,0 +1,49 @@
+<div class="col-sm-6 col-sm-offset-3">
+  <br>
+  <div class="signupbox">
+    <%= form_for @user, :html => { :multipart => true, :id => "user-form" } do |f| %>
+      <%= f.label :user_name, "User Name" %>:
+      <%= f.text_field :user_name, class:"form-control", required: true %><br />
+      <%= f.label :email, "Email" %>:
+      <%= f.email_field :email, class:"form-control", required: true %><br />
+      <%= f.label :password, "Password" %>:
+      <%= f.password_field :password, class:"form-control", required: true %><br />
+      <%= f.label :password_confirmation, "Retype Your Password" %>:
+      <%= f.password_field :password_confirmation, class:"form-control", required: true %><br />
+      
+      <!-- #todo -->
+      <!-- falsing for now until i get paperclip installed -->
+      <% if false %>
+                  <br>
+                  <br>
+                   <label> Upload a Photo</label>
+                    <br>
+                    <br>
+                    <%= f.file_field :avatar %>
+                    <br>
+                    <br>
+                  <% if logged_in? %>
+                    <% if @user.avatar %> 
+                      <%= image_tag @user.avatar.url(:medium) %>
+                        Current Photo
+                    <br>
+                    <br>
+                    <br>
+                  <% end %>
+      <% end %>
+
+      <% end %>
+
+      <% if false %> 
+                  <% if logged_in? %>
+                    <%= f.submit "Update Profile", class:"btn btn-dark" %>
+                    <%= link_to "Delete Account",  @user, method: :delete, class: "btn btn-dark"  %>
+                  <% else %>
+                    <%= f.submit "Join Us!", class:"btn btn-dark" %>
+                  <% end %>
+      <% end %> 
+      <%= f.submit "Join Us!", class:"btn btn-primary" %>
+
+    <% end %>
+  </div>
+</div>
