@@ -4,8 +4,8 @@ class User < ActiveRecord::Base
 	has_many :businesses, dependent: :destroy
 	has_many :follows, dependent: :destroy
 	# ask 
-	# wtf is this??
-	has_many :favorite_businesses, through: :follows, source: :business
+	# we can't use has_many :businesses because it's already used at the top so follow_businesses is an alias to go around it
+	has_many :follow_businesses, through: :follows, source: :business
 
 	has_attached_file :avatar,
 	                 :styles => { :medium => "150x150>", :thumb => "44x44#" },

@@ -13,7 +13,7 @@
         <div class="col-md-6">
           <br>  
           <p><strong>Businesses Backed:</strong> 4</p>
-          <p><strong>Date Joined:</strong> <%= current_user.created_at %></p>
+          <p><strong>Date Joined:</strong> <%= current_user.created_at.strftime("%b %d %Y") %></p>
         </div>
         <div class="col-md-6">
           <br>
@@ -23,7 +23,7 @@
       </div>
     </div>
   </div>
-  <hr>
+  <br>
   <br>
   <br>  
   <div class="row">
@@ -37,8 +37,9 @@
         <% current_user.businesses.each do |business| %>
           <h4><%= image_tag business.avatar.url(:thumb)%>
           <%= link_to business.business_name, business_path(business) %>
+      
 
-          <span class="pull-right small">Date Added: <%= business.created_at %></span></h4>
+          <span class="pull-right small"><%= link_to "Edit Your Business Page", edit_business_path(business), class: "btn btn-default" %>&nbsp;&nbsp;&nbsp;&nbsp;Last Modified At: <%= business.updated_at.strftime("%b %d %Y") %>&nbsp;&nbsp;&nbsp;&nbsp;Date Added: <%= business.created_at.strftime("%b %d %Y") %></span></h4>
           <!-- count of people interested in the business could go here -->
           <p><%= nil %></p>
         <% end %>

@@ -25,8 +25,13 @@
         <p class="help-block">Max size 10MB</p>
 				
         <br>
-        <%= f.submit "Add Your Business", class:"btn btn-primary form-control" %>
-  			<p class="help-block"><center>You will still be able to make changes after submitting</center></p> 
+        <% if @business.user_id == session[:user_id] %>
+          <%= f.submit "Submit Changes", class:"btn btn-primary" %>
+          <%= link_to "Delete Business Page",  @user, method: :delete, class: "btn btn-dark pull-right"  %>
+        <% else %>
+          <%= f.submit "Add Your Business", class:"btn btn-primary" %>
+          <p class="help-block"><center>You will still be able to make changes after submitting</center></p> 
+        <% end %>
       <% end %>
       <br>
       <br>
@@ -34,37 +39,3 @@
   </div>
 </div>
 
-
-<% if false %> 
-      <% if current_user %>
-        <%= f.label :avatar, "Change Your Photo" %>
-        <br>
-        <br>
-        <% if @user.avatar %> 
-          <%= image_tag @user.avatar.url(:medium) %>
-            Current Photo
-            <br>
-            <br>
-            <%= f.file_field :avatar %>
-            <p class="help-block">Max size 10MB</p>
-          <br>
-          <% end %>
-        <% else %>
-        <%= f.label :avatar, "Upload A Photo" %>
-        <br>
-        <br>
-        <%= f.file_field :avatar %>
-        <p class="help-block">Max size 10MB</p>
-      <% end %>
-      <!-- update account -->
-      <% if current_user %>
-        <%= f.submit "Submit Changes", class:"btn btn-primary" %>
-        <%= link_to "Delete Account",  @user, method: :delete, class: "btn btn-dark"  %>
-      <% else %>
-        <%= f.submit "Join Us!", class:"btn btn-primary" %>
-      <% end %>
-  </div>
-</div>
-
-
-<% end %>

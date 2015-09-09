@@ -13,8 +13,15 @@
  *= require_tree .
  *= require_self
  */
+/*.simple-nav {
+	background-color: white;
+}*/
 
- }
+/*body {
+	background-color: #2EB8B8;
+}
+*/
+
  .alert {
    margin-bottom: 0;
  }
