@@ -27,7 +27,7 @@
         <%= f.label :avatar, "Upload A Photo" %>
         <br>
         <br>
-        <%= f.file_field :avatar %>
+        <%= f.file_field :avatar, class:"btn" %>
         <p class="help-block">Max size 10MB</p>
       <% end %>
       <!-- update account -->
@@ -35,7 +35,7 @@
         <%= f.submit "Submit Changes", class:"btn btn-primary" %>
         <%= link_to "Delete Account",  @user, method: :delete, class: "btn btn-dark"  %>
       <% else %>
-        <%= f.submit "Join Us!", class:"btn btn-primary" %>
+        <%= f.submit "Join Us!", class:"btn btn-primary form-control" %>
       <% end %>
     <% end %>
   </div>

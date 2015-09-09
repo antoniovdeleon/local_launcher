@@ -1,1 +1,4 @@
-<% current_user.business.all %>
+<% @business.avatar %>
+
+
+<%= image_tag @business.avatar.url(:medium) %>

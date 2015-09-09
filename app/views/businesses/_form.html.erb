@@ -1,7 +1,7 @@
 <div class="col-sm-8 col-sm-offset-2">
   <br>
     <div class="signupbox">
-      <%= form_for @business do |f| %>
+      <%= form_for @business, :html => { :multipart => true, :id => "business-form" } do |f| %>
       <!-- #todo -->
       <!-- maybe it would be a good idea to have this form really short and have it where they can edit it later so they can quickly create their profile before getting bogged down with writing all this information -->
         <%= f.label :busines_name, "Business Name" %>:
@@ -15,16 +15,56 @@
         <%= f.text_field :website, class:"form-control", placeholder: "ex. www.scanforkeeps.com" %>
         <p class="help-block">If you don't have one yet, you could still add it later</p> <br>
         <%= f.label :introduction, "Introduction" %>:
-        <%= f.text_area :introduction , class:"form-control", placeholder: "Hi, we're ScanForKeeps and we're excited to opening up soon to help you digitize your media!",required: true %>
+        <%= f.text_area :introduction , class:"form-control", placeholder: "Hi, we're ScanForKeeps and we're excited to opening up soon to help you digitize your media!",required: true %><br />
         <!-- # todo -->
         <!-- add a date picker for when the business is expected to open up -->
+        <%= f.label :avatar, "Upload Your Logo" %>
         <br>
-        <p class="help-block">You will still be able to make changes after submitting</p> 
-        <%= f.submit "Submit", class:"btn btn-primary" %>
-  
+        <br>
+        <%= f.file_field :avatar , class:"btn" %>
+        <p class="help-block">Max size 10MB</p>
+				
+        <br>
+        <%= f.submit "Add Your Business", class:"btn btn-primary form-control" %>
+  			<p class="help-block"><center>You will still be able to make changes after submitting</center></p> 
       <% end %>
       <br>
       <br>
     </div>
   </div>
 </div>
+
+
+<% if false %> 
+      <% if current_user %>
+        <%= f.label :avatar, "Change Your Photo" %>
+        <br>
+        <br>
+        <% if @user.avatar %> 
+          <%= image_tag @user.avatar.url(:medium) %>
+            Current Photo
+            <br>
+            <br>
+            <%= f.file_field :avatar %>
+            <p class="help-block">Max size 10MB</p>
+          <br>
+          <% end %>
+        <% else %>
+        <%= f.label :avatar, "Upload A Photo" %>
+        <br>
+        <br>
+        <%= f.file_field :avatar %>
+        <p class="help-block">Max size 10MB</p>
+      <% end %>
+      <!-- update account -->
+      <% if current_user %>
+        <%= f.submit "Submit Changes", class:"btn btn-primary" %>
+        <%= link_to "Delete Account",  @user, method: :delete, class: "btn btn-dark"  %>
+      <% else %>
+        <%= f.submit "Join Us!", class:"btn btn-primary" %>
+      <% end %>
+  </div>
+</div>
+
+
+<% end %>
