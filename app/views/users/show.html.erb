@@ -1,34 +1,53 @@
 <div class="row">
-  <div class="col-md-4">
-  	<%= image_tag current_user.avatar.url(:medium) %>
-    <h3>Hello <%= current_user.user_name %></h3>
-    <hr>
-    <p><strong>Email:</strong> <%= current_user.email %></p>
-    <p><strong>You're Interested In:</strong> <%= nil %></p>
-    <div>
-    	<a>Shorty's Candy Shop</a>
-    	<p>opening in 25 days</p>
-    </div>
+  <div class="col-md-3">
     <br>
-   <button class="btn btn-success"> Find Businesses Opening Up!</button>
+  	<%= image_tag current_user.avatar.url(:medium) %>
   </div>
+  <div class="col-md-9">
+    <h1>Hello <%= current_user.user_name %></h1>
+    <br>
+    <hr>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-5 col-md-offset-3">
+    <p><strong>Businesses Backed:</strong> 4</p>
+    <p><strong>Date Joined:</strong> <%= current_user.created_at %></p>
+  </div>
+  <div class="col-md-4">
+    <p><strong>Email:</strong> <%= current_user.email %></p>
+    <%= link_to "Edit Your Profile", edit_profile_path, class: "btn btn-primary" %>
+  </div>
+</div>
+<br>
+<div class="row">
+  <h3>Businesses Backed</h3>
+  <br>
+  <div class="well">
+    <h4><%= image_tag current_user.avatar.url(:medium) %> test<h4>
+  </div>
+</div>
 
+
+
+
+<div class="row">
 	<% if current_user.businesses.any? %>
-  <div class="col-md-8">
-    <h2>Your Business</h2>
+  <div class="col-md-10 col-md-offset-1">
+    <h2><center>Manage Your Business Page</center></h2>
     <hr>
       <% current_user.businesses.each do |business| %>
-        <h4>
-          <%= business.business_name %>
-          <span class="pull-right">
-            <%= link_to "Go To Your Business Page", business_path(business), class: "btn btn-default pull-right" %>
-          </span>
-        </h4>
+        <h4><%= image_tag business.avatar.url(:thumb) %>
+        <%= link_to business.business_name, business_path(business) %>
+
+        <span class="pull-right small">Date Added: <%= business.created_at %></span></h4>
+
+
         <!-- count of people interested in the business could go here -->
         <p><%= nil %></p>
         <hr>
       <% end %>
-     <%= link_to "Add Another Business", new_business_path, class: "btn btn-default" %>
+    <center><%= link_to "Add Another Business", new_business_path, class: "btn btn-default" %></center>
     <% else %>
       <p>Are You A Business Owner?</p>
       <%= link_to "Add Your Business", new_business_path, class: "btn btn-default" %>
