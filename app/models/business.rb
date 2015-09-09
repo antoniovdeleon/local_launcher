@@ -1,6 +1,8 @@
 class Business < ActiveRecord::Base
 
 	belongs_to :user
+	has_many :follows, dependent: :destroy
+	has_many :users, through: :follows
 
 	has_attached_file :avatar,
 	                  :styles => { :medium => "150x150>", :thumb => "44x44#" },

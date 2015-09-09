@@ -18,37 +18,31 @@
 <body>
 
 	<!-- navbar -->
-	<div class="container">
-	  <div class="simple-nav">
-	    <%= link_to "Home", root_path %>
-	    <!-- creates spacing between links -->
-	    &nbsp;&nbsp;|&nbsp;&nbsp;
-	    
-	    <% if current_user %>
-	      <%= link_to "Profile", profile_path %>
-	      <!-- creates spacing between links -->
-	      &nbsp;&nbsp;|&nbsp;&nbsp;
-
-	      <% if false %>
-	      <%= link_to "+ Recipe", new_recipe_path %>
-	      <!-- creates spacing between links -->
-	      &nbsp;&nbsp;|&nbsp;&nbsp;
-	      <% end %>
-
-	      <%= link_to "Log Out", logout_path %>
-	    <% else %>
-	      <%= link_to "Sign Up", signup_path %>
-	      <!-- creates spacing between links -->
-	      &nbsp;&nbsp;|&nbsp;&nbsp;
-	      <%= link_to "Log In", login_path %>
-	    <% end %>
-	  </div>
+	<div class="simple-nav">
+		<div class="container-fluid">
+	  <a><h3><%= link_to "LocalLauncher", root_path, class: "pull-left" %></h3></a>
+	  <% if current_user %>
+	    <%= link_to "Logout", logout_path, class: "pull-right" %>
+	    <span class= "pull-right">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</span>
+	    <%= link_to "Profile ", profile_path, class: "pull-right" %>
+	  <% else %>
+	    <%= link_to "Sign Up", signup_path, class: "pull-right" %>
+			<span class = "pull-right">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</span>
+	    <%= link_to "Log In", login_path, class: "pull-right" %>
+	  <% end %>
 	  <br>
+		<hr>
+	</div>
 
+	<div class="container">
+		
 		<!-- flash message -->
 	  <% flash.each do |name, msg| %>
 	    <%= content_tag :div, msg, class: "alert #{name == 'error' ? 'alert-danger' : 'alert-info'}" %>
+	    <br>
+	    <br>
 	  <% end %>
+	</div>
 
 		<!-- views will be added here -->
 	  <%= yield %>

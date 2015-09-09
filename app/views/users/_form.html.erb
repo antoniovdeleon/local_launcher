@@ -1,44 +1,48 @@
-<div class="col-sm-6 col-sm-offset-3">
-  <br>
-  <div class="signupbox">
-    <%= form_for @user, :html => { :multipart => true, :id => "user-form" } do |f| %>
-      <%= f.label :user_name, "User Name" %>:
-      <%= f.text_field :user_name, class:"form-control", placeholder:"ex. MrMacintosh", required: true %><br />
-      <%= f.label :email, "Email" %>:
-      <%= f.email_field :email, class:"form-control", placeholder:"ex. hello@google.com", required: true %><br />
-      <%= f.label :password, "Password" %>:
-      <%= f.password_field :password, class:"form-control", placeholder:"don't use password as your password", required: true %><br />
-      <%= f.label :password_confirmation, "Retype Your Password" %>:
-      <%= f.password_field :password_confirmation, class:"form-control", placeholder:"retype your password", required: true %><br />
-      <% if current_user %>
-        <%= f.label :avatar, "Change Your Photo" %>
-        <br>
-        <br>
-        <% if @user.avatar %> 
-          <%= image_tag @user.avatar.url(:medium) %>
-            Current Photo
-            <br>
-            <br>
-            <%= f.file_field :avatar %>
-            <p class="help-block">Max size 10MB</p>
+ 
+
+<div class="container">
+  <div class="col-sm-6 col-sm-offset-3">
+    <br>
+    <div class="signupbox">
+      <%= form_for @user, :html => { :multipart => true, :id => "user-form" } do |f| %>
+        <%= f.label :user_name, "User Name" %>:
+        <%= f.text_field :user_name, class:"form-control", placeholder:"ex. MrMacintosh", required: true %><br />
+        <%= f.label :email, "Email" %>:
+        <%= f.email_field :email, class:"form-control", placeholder:"ex. hello@google.com", required: true %><br />
+        <%= f.label :password, "Password" %>:
+        <%= f.password_field :password, class:"form-control", placeholder:"don't use password as your password", required: true %><br />
+        <%= f.label :password_confirmation, "Retype Your Password" %>:
+        <%= f.password_field :password_confirmation, class:"form-control", placeholder:"retype your password", required: true %><br />
+        <% if current_user %>
+          <%= f.label :avatar, "Change Your Photo" %>
           <br>
-          <% end %>
+          <br>
+          <% if @user.avatar %> 
+            <%= image_tag @user.avatar.url(:medium) %>
+              Current Photo
+              <br>
+              <br>
+              <%= f.file_field :avatar %>
+              <p class="help-block">Max size 10MB</p>
+            <br>
+            <% end %>
+          <% else %>
+          <%= f.label :avatar, "Upload A Photo" %>
+          <br>
+          <br>
+          <%= f.file_field :avatar, class:"btn" %>
+          <p class="help-block">Max size 10MB</p>
+        <% end %>
+        <!-- update account -->
+        <% if current_user %>
+          <%= f.submit "Submit Changes", class:"btn btn-primary" %>
+          <%= link_to "Delete Account",  @user, method: :delete, class: "btn btn-dark"  %>
         <% else %>
-        <%= f.label :avatar, "Upload A Photo" %>
-        <br>
-        <br>
-        <%= f.file_field :avatar, class:"btn" %>
-        <p class="help-block">Max size 10MB</p>
+          <%= f.submit "Join Us!", class:"btn btn-primary form-control" %>
+        <% end %>
       <% end %>
-      <!-- update account -->
-      <% if current_user %>
-        <%= f.submit "Submit Changes", class:"btn btn-primary" %>
-        <%= link_to "Delete Account",  @user, method: :delete, class: "btn btn-dark"  %>
-      <% else %>
-        <%= f.submit "Join Us!", class:"btn btn-primary form-control" %>
-      <% end %>
-    <% end %>
-    <br>
-    <br>
+      <br>
+      <br>
+    </div>
   </div>
 </div>
