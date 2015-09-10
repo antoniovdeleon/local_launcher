@@ -79,7 +79,15 @@
 	  			<h1><%= @business.business_name %></h1>
 	  		</div>
 				<div class="panel-body">
-	  			<p><%= @business.introduction %></p>
+					<% if @business.introduction %>
+						<p><%= @business.introduction %></p>
+					<% else %>
+						<% if  current_user && current_user.businesses.include?(@business) %>
+							<a><%= link_to "Add A Description!", edit_business_path(@business), class: "btn btn-default form-control" %></a>
+						<% else %>
+							<p class="well">We'll adding a description soon!</p>
+						<% end %>
+					<% end %>
 	  		</div>
 	  	</div>
 
@@ -112,8 +120,20 @@
 			  					<% if @business.user.id == session[:user_id] %>
 			  						<%= link_to "", edit_business_deal_path(@business, deal), class:"glyphicon glyphicon-edit" %>
 			  					<% end %></h4>
-			  					<p class="help-block"><%= deal.name2 %></p>
-			  					<p><%= deal.details %></p>
+			  					<% if deal.name2 %>
+			  						<p class="help-block"><%= deal.name2 %></p>
+			  					<% end %>
+			  					<% if deal.details %>
+			  							<p><%= deal.details %></p>
+			  					<% else %>
+			  						<br>
+			  						<br>
+			  						<% if  current_user && current_user.businesses.include?(@business) %>
+			  							<a><%= link_to "Add More Info", edit_business_path(@business, deal), class: "btn btn-default" %></a>
+			  						<% end %>
+			  					<% end %>
+			  				
+
 			  				</div>
 			  				<div class="col-md-2">
 			  					<h4><span class="pull-right">$<%= deal.price %></span></h4>

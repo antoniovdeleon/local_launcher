@@ -53,6 +53,11 @@ class DealsController < ApplicationController
     # end
   end
 
+  def destroy
+    deal = Deal.find(params[:id])
+    deal.destroy
+    redirect_to profile_path
+  end
 
   private
     def deal_params
