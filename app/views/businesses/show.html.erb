@@ -97,7 +97,15 @@
 			  			<div class="panel-body">
 			  				<div class="col-md-3">
 			  					<br>
-									<%= image_tag deal.avatar.url(:medium) %>
+			  					<% if deal.avatar %>
+			  						<%= image_tag deal.avatar.url(:medium) %>
+			  					<% else %>
+			  						<% if  current_user && current_user.businesses.deals.include?(deal) %>
+			  							<a><%= link_to "Add A Photo!", edit_business_deal_path(@business, deal), class: "btn btn-default form-control" %></a>
+			  						<% else %>
+			  							<p class="well">Photo coming soon</p>
+			  						<% end %>
+			  					<% end %>
 			  				</div>
 			  				<div class="col-md-7">
 			  					<h4><%= deal.name %>

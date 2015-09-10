@@ -37,8 +37,8 @@ class DealsController < ApplicationController
   end
 
   def edit
-    @business = Business.find(params[:id])
     @deal = Deal.find(params[:id])
+    @business = Business.find(@deal.business.id)
     render :edit
   end
 

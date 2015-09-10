@@ -1,43 +1,45 @@
-<div class="col-sm-8 col-sm-offset-2">
-  <br>
-    <div class="signupbox">
-      <%= form_for [@business, @deal], :html => { :multipart => true, :id => "deal-form" } do |f| %>
-      <!-- #todo -->
-      <!-- maybe it would be a good idea to have this form really short and have it where they can edit it later so they can quickly create their profile before getting bogged down with writing all this information -->
-        <%= f.label :name, "Name" %>:
-        <%= f.text_field :name, class:"form-control", placeholder: "ex. 1lb of Jacobs Wonderbar",required: true %><br />
-        <%= f.label :name2, "Item Category" %>:
-        <%= f.text_field :name2, class:"form-control", placeholder: "ex. Dark Roast Blends",required: true %>
-        <p class="help-block">You can use this for a category as well (flexible)</p><br />
-        <%= f.label :details, "Details" %>:
-        <%= f.text_area :details, class:"form-control", placeholder: "ex. named in honor of philz only son jacob. each memorable sip boasts delicious layers of nuts and chocolate filled with a full-bodied flavor and finished without any acidity or bitterness. jacobs wonderbar brew is a dark roast favorite!",required: true %><br />
-        <%= f.label :price, "Price" %>:
-        <%= f.text_field :price, class:"form-control", placeholder: "ex. 7.00" %>
-        <p class="help-block">Don't add currency type ($)</p> <br>
-        <%= f.label :value, "Original Retail Price" %>:
-        $<%= f.text_field :value , class:"form-control", placeholder: "ex. 14.95",required: true %>
-        <p class="help-block">Don't add currency type ($)</p><br />
-        <%= f.label :avatar, "Add A Photo" %>
-        <br>
-        <br>
-        <%= f.file_field :avatar , class:"btn", required: false %>
-        <p class="help-block">Max size 10MB</p>
-				
-        <br>
-        <% if false %>
-        <% if @deal.business_id == session[:user_id] %>
-          <%= f.submit "Submit Changes", class:"btn btn-primary" %>
-          <%= link_to "Delete Business Page",  @user, method: :delete, class: "btn btn-dark pull-right"  %>
-        <% else %>
-          <%= f.submit "Add Your Business", class:"btn btn-primary" %>
+<div class="container">
+  <div class="col-sm-8 col-sm-offset-2">
+    <br>
+      <div class="signupbox">
+        <%= form_for [@business, @deal], :html => { :multipart => true, :id => "deal-form" } do |f| %>
+        <!-- #todo -->
+        <!-- maybe it would be a good idea to have this form really short and have it where they can edit it later so they can quickly create their profile before getting bogged down with writing all this information -->
+          <%= f.label :name, "Name" %>:
+          <%= f.text_field :name, class:"form-control", placeholder: "ex. 1lb of Jacobs Wonderbar",required: true %><br />
+          <%= f.label :name2, "Item Category" %>:
+          <%= f.text_field :name2, class:"form-control", placeholder: "ex. Dark Roast Blends"%>
+          <p class="help-block">You can use this for a category as well (flexible)</p><br />
+          <%= f.label :details, "Details" %>:
+          <%= f.text_area :details, class:"form-control", placeholder: "ex. named in honor of philz only son jacob. each memorable sip boasts delicious layers of nuts and chocolate filled with a full-bodied flavor and finished without any acidity or bitterness. jacobs wonderbar brew is a dark roast favorite!"%><br />
+          <%= f.label :price, "Price" %>:
+          <%= f.text_field :price, class:"form-control", placeholder: "ex. 7.00" %>
+          <p class="help-block">Don't add currency type ($)</p> <br>
+          <%= f.label :value, "Original Retail Price" %>:
+          $<%= f.text_field :value , class:"form-control", placeholder: "ex. 14.95",required: true %>
+          <p class="help-block">Don't add currency type ($)</p><br />
+          <%= f.label :avatar, "Add A Photo" %>
+          <br>
+          <br>
+          <%= f.file_field :avatar , class:"btn"%>
+          <p class="help-block">Max size 10MB</p>
+  				
+          <br>
+          <% if false %>
+          <% if @deal.business_id == session[:user_id] %>
+            <%= f.submit "Submit Changes", class:"btn btn-primary" %>
+            <%= link_to "Delete Business Page",  @user, method: :delete, class: "btn btn-dark pull-right"  %>
+          <% else %>
+            <%= f.submit "Add Your Business", class:"btn btn-primary" %>
+            <p class="help-block"><center>You will still be able to make changes after submitting</center></p> 
+          <% end %>
+          <% end %>
+          <%= f.submit "Add Deal", class:"btn btn-primary" %>
           <p class="help-block"><center>You will still be able to make changes after submitting</center></p> 
         <% end %>
-        <% end %>
-        <%= f.submit "Add Deal", class:"btn btn-primary" %>
-        <p class="help-block"><center>You will still be able to make changes after submitting</center></p> 
-      <% end %>
-      <br>
-      <br>
+        <br>
+        <br>
+      </div>
     </div>
   </div>
 </div>

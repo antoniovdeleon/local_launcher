@@ -1,4 +1,41 @@
-<div class="well">
-<h3><center>Add Deals</center> </h3>
+<div class="container">
+	<h3><center>Add A New Deal</center> </h3>
+	<hr>
 </div>
-<%= render 'form' %>
+
+
+
+<!-- form -->
+<div class="container">
+  <div class="col-sm-8 col-sm-offset-2">
+    <br>
+      <div class="signupbox">
+        <%= form_for [@business, @deal], :html => { :multipart => true, :id => "deal-form" } do |f| %>
+        <!-- #todo -->
+        <!-- maybe it would be a good idea to have this form really short and have it where they can edit it later so they can quickly create their profile before getting bogged down with writing all this information -->
+          <%= f.label :name, "Name" %>:
+          <%= f.text_field :name, class:"form-control", placeholder: "ex. 1lb of Jacobs Wonderbar"%><br />
+          <%= f.label :price, "Price" %>:
+          <%= f.text_field :price, class:"form-control", placeholder: "ex. 7.00" %>
+          <p class="help-block">Don't add currency type ($)</p> <br>
+          <%= f.label :value, "Original Retail Price" %>:
+          $<%= f.text_field :value , class:"form-control", placeholder: "ex. 14.95",required: true %>
+          <p class="help-block">Don't add currency type ($)</p><br />
+          <br>
+          <% if false %>
+          <% if @deal.business_id == session[:user_id] %>
+            <%= f.submit "Submit Changes", class:"btn btn-primary" %>
+            <%= link_to "Delete Business Page",  @user, method: :delete, class: "btn btn-dark pull-right"  %>
+          <% else %>
+            <%= f.submit "Add Your Business", class:"btn btn-primary" %>
+            <p class="help-block"><center>You will still be able to make changes after submitting</center></p> 
+          <% end %>
+          <% end %>
+          <%= f.submit "Add Deal", class:"btn btn-primary" %>
+        <% end %>
+        <br>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
