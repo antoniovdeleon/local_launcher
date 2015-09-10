@@ -35,45 +35,37 @@
 	  		<div class="panel-heading">
 	  			<h2>Pre-Opening Deals</h2>
 	  		</div>
-	  		<div class="panel-body">
-	  			<h4>1lb of Jacobs Wonderbar<span class="pull-right">$7.00</span></h4>
-	  			<p class="help-block">Dark Roast Blends<span class="pull-right help-block">Value $14.95</span></p>
-	  			<div class="row">
-	  				<div class="col-md-10">
+	  		<div class="row">
+	  			<div class="panel-body">
+	  				<div class="col-md-3">
+	  					<br>
+							<p>Photo goes here</p>
+	  				</div>
+	  				<div class="col-md-7">
+	  					<h4>1lb of Jacobs Wonderbar</h4>
+	  					<p class="help-block">Dark Roast Blends</p>
 	  					<p>named in honor of philz only son jacob. each memorable sip boasts delicious layers of nuts and chocolate filled with a full-bodied flavor and finished without any acidity or bitterness. jacobs wonderbar brew is a dark roast favorite!</p>
 	  				</div>
 	  				<div class="col-md-2">
+	  					<h4 class="pull-right">$7.00</h4>
+	  					<p class="help-block pull-right">Value $14.95</p>
+	  					<br>
+	  					<br>
+	  					<br>
+	  					<br>
 	  					<button class="btn btn-success pull-right">Buy!</button>
 	  				</div>
 	  			</div>
 	  		</div>
 	  	</div>
-	  	<% if current_user && current_user.businesses.include?(@business) %>
-	  	  <%= link_to "Edit Your Business", edit_business_path(@business), class: "btn btn-default form-control" %>
-	  	<% end %>
-		</div>
-		<div class="col-md-3">	
-			
-		</div>
-		<div class= "col-md-9">
-			
-	  	</div>
-		</div>
-				
-			</div>
-			<div class="col-md-9">
+	  </div>
+	</div>
+	<% if current_user && current_user.businesses.include?(@business) %>
+	  <%= link_to "Edit Your Business", edit_business_path(@business), class: "btn btn-default form-control" %>
+	<% end %>
+	<br>
+	<br>
+	<br>
+</div>
 
-
-		  	</div>
-				<div class="col-md-3">	
-
-				</div>
-				<div class="col-md-3">	
-
-				</div>
-			</div>
-		</div>
-		<br>
-		<br>
-		<br>
 
