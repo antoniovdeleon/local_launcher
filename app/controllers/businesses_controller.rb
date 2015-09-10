@@ -42,9 +42,6 @@ class BusinessesController < ApplicationController
     if @business.address
       @business_progress = @business_progress + 1
     end
-    if @business.contact_info
-      @business_progress = @business_progress + 1
-    end
     if @business.category
       @business_progress = @business_progress + 1
     end

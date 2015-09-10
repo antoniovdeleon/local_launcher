@@ -26,7 +26,7 @@ class DealsController < ApplicationController
   		redirect_to business_path(@business)
   		else
   		  flash[:error] = deal.errors.full_messages.join(", ")
-  		  redirect_to new_deal_path
+  		  redirect_to root_path
   	end
   end
 
@@ -36,10 +36,27 @@ class DealsController < ApplicationController
   	render :show
   end
 
+  def edit
+    @business = Business.find(params[:id])
+    @deal = Deal.find(params[:id])
+    render :edit
+  end
+
+  def update
+    @deal = Deal.find(params[:id])
+    @business = @deal.business_id 
+    # if current_user.@npos.include? @npo
+      @deal.update_attributes(deal_params)
+      redirect_to business_path(@business)
+    # else 
+    #   redirect_to root_path
+    # end
+  end
+
 
   private
     def deal_params
-      params.require(:deal).permit(:name, :name2, :details, :details, :price, :website , :value)
+      params.require(:deal).permit(:name, :name2, :details, :price, :website , :value, :id, :avatar)
     end
 end
 

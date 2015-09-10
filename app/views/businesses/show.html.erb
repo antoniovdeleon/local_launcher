@@ -2,7 +2,7 @@
 
 	<!-- progress bar that only business owner can see-->
 	<% if  current_user && current_user.businesses.include?(@business) %>
-		<% if @business_progress >= 14 %>
+		<% if @business_progress >= 13 %>
 			<div class="progress">
 				<!-- # todo add jquery to get this to disappear -->
 		  	<div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;" background-color="gold">
@@ -97,7 +97,7 @@
 			  			<div class="panel-body">
 			  				<div class="col-md-3">
 			  					<br>
-									<p>Photo goes here</p>
+									<%= image_tag deal.avatar.url(:medium) %>
 			  				</div>
 			  				<div class="col-md-7">
 			  					<h4><%= deal.name %>
