@@ -36,7 +36,7 @@
         <!-- update account -->
         <% if current_user %>
           <%= f.submit "Submit Changes", class:"btn btn-primary" %>
-          <%= link_to "Delete Account",  @user, method: :delete, class: "btn btn-dark pull-right"  %>
+          <%= link_to "Delete Account",  @user, method: :delete, class: "btn btn-dark pull-right", data: { confirm: "Are you sure?" }  %>
         <% else %>
           <%= f.submit "Join Us!", class:"btn btn-primary form-control" %>
         <% end %>

@@ -33,6 +33,7 @@ class BusinessesController < ApplicationController
 
   def show
     @business= Business.find(params[:id])
+    @outsideURL = @business.website
     render :show
   end
 
