@@ -1,21 +1,24 @@
 <div class="container">
 
-	<!-- progress bar -->
-<% if @business %>
-	<%= @business %>
-	<div class="progress">
-  	<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-    	60%
-  	</div>
-  </div>
- <% else %>
- 	<div class="progress">
-   	<div class="progress-bar" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%;">
-   		10%
-   	</div>
-	</div>
-<% end %>
-
+	<!-- progress bar that only business owner can see-->
+	<% if  current_user && current_user.businesses.include?(@business) %>
+		<% if @business_progress >= 14 %>
+			<div class="progress">
+				<!-- # todo add jquery to get this to disappear -->
+		  	<div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;" background-color="gold">
+		    	<small>You're A Business Warrior!</small>
+		  	</div>
+			</div>
+		<% else %>
+			<!-- if number is below 14 (max # of form fields in both deals info and business info) -->
+			<div class="progress">
+				<!-- # todo add jquery to get this to disappear -->
+		  	<div class="progress-bar" role="progressbar" aria-valuenow="<%= @business_progress / 14.to_f * 100 %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @business_progress / 14.to_f * 100 %>%;">
+		    <%= (@business_progress / 14.to_f * 100).to_i %>%
+		  	</div>
+			</div>
+		<% end %>
+	<% end %>
 
 	<!-- # todo Add user cover page -->
 	<div class="row">

@@ -1,6 +1,8 @@
 class BusinessesController < ApplicationController
   before_filter :authorize, except: [:index, :show]
 
+
+
   # show ALL businesss in db
   def index
     @businesses = Business.all
@@ -33,7 +35,51 @@ class BusinessesController < ApplicationController
 
   def show
     @business= Business.find(params[:id])
-    @outsideURL = @business.website
+    @business_progress = 0
+    if @business.business_name
+      @business_progress = @business_progress + 1
+    end
+    if @business.address
+      @business_progress = @business_progress + 1
+    end
+    if @business.contact_info
+      @business_progress = @business_progress + 1
+    end
+    if @business.category
+      @business_progress = @business_progress + 1
+    end
+    if @business.introduction
+      @business_progress = @business_progress + 1
+    end
+    if @business.website
+      @business_progress = @business_progress + 1
+    end
+    if @business.avatar
+      @business_progress = @business_progress + 1
+    end
+    if @business.deals.any?
+        @business_progress = @business_progress + 1
+        @business.deals.each do |deal| 
+          if deal.name
+            @business_progress = @business_progress + 1
+          end
+          if deal.name2
+            @business_progress = @business_progress + 1
+          end
+          if deal.name2
+            @business_progress = @business_progress + 1
+          end
+          if deal.details
+            @business_progress = @business_progress + 1
+          end
+          if deal.price
+            @business_progress = @business_progress + 1
+          end
+          if deal.value
+            @business_progress = @business_progress + 1
+          end
+        end
+      end
     render :show
   end
 
