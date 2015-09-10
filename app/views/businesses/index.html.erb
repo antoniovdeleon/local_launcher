@@ -1,17 +1,11 @@
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-md-10 col-md-offset-1">
     <h1>Businesses</h1>
     <hr>
     <% if @businesses.any? %>
       <% @businesses.each do |business| %>
         <h4>
-          <%= business.business_name %>
-          <span class="pull-right">
-            <%= link_to "View Business", business_path(business), class: "btn btn-default pull-right" %>
-          </span>
-        </h4>
-        <p><%= business.introduction %></p>
-        <p>
+          <h4><%= image_tag business.avatar.url(:thumb)%>&nbsp&nbsp<%= link_to business.business_name, business_path(business) %>
           <a href="javascript:void(0)" class="favorite" data-id="<%= business.id %>">
             <!-- check if current_user has already favorited recipe to show correct star icon -->
             <% if current_user %>
@@ -22,14 +16,24 @@
               <% end %>
             <% end %> 
           </a>
+          <span class="pull-right small">&nbsp;&nbsp;&nbsp;&nbsp;
+          	<strong>Last updated on  </strong><%= business.updated_at.strftime("%b %d %Y") %>
+          	&nbsp;&nbsp;&nbsp;&nbsp;<strong>Started on  </strong><%= business.created_at.strftime("%b %d %Y") %></span></h4>
+        </h4>
+        <p>
+          
         </p>
+        <p><%= business.introduction %></p>
         <hr>
       <% end %>
     <% else %>
       <p>No businesses yet!</p>
       <hr>
     <% end %>
+    <center class="well">
 		<p>Do you have a business that's about to open up?</p>
      <%= link_to "Add Your Business", new_business_path, class: "btn btn-default" %>
+   </center>
   </div>
 </div>
+

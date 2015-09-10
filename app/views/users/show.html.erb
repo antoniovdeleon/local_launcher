@@ -39,7 +39,9 @@
           <%= link_to business.business_name, business_path(business) %>
       
 
-          <span class="pull-right small"><%= link_to "Edit Your Business Page", edit_business_path(business), class: "btn btn-default" %>&nbsp;&nbsp;&nbsp;&nbsp;Last Modified At: <%= business.updated_at.strftime("%b %d %Y") %>&nbsp;&nbsp;&nbsp;&nbsp;Date Added: <%= business.created_at.strftime("%b %d %Y") %></span></h4>
+          <span class="pull-right small">
+            <%= link_to "Edit Your Business Page", edit_business_path(business), class: "btn btn-default" %>
+            &nbsp;&nbsp;&nbsp;&nbsp;Last Modified At: <%= business.updated_at.strftime("%b %d %Y") %>&nbsp;&nbsp;&nbsp;&nbsp;Date Added: <%= business.created_at.strftime("%b %d %Y") %></span></h4>
           <!-- count of people interested in the business could go here -->
           <p><%= nil %></p>
         <% end %>
