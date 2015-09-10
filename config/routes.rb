@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   root 'site#index'
+
+  resources :deals
   # users routes
   get "/signup", to: "users#new"
   get "/profile", to: "users#show"
@@ -13,6 +15,11 @@ Rails.application.routes.draw do
   # post "/sessions", to: "sessions#create"
   resources :sessions, only: [:create]
 
-  resources :businesses
+
+
+  resources :businesses do 
+    resources :deals
+  end
+  resources :deals, only: [:index]
 
 end

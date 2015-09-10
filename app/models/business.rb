@@ -2,6 +2,7 @@ class Business < ActiveRecord::Base
 
 	belongs_to :user
 	has_many :follows, dependent: :destroy
+	has_many :deals, dependent: :destroy
 	has_many :users, through: :follows
 
 	has_attached_file :avatar,

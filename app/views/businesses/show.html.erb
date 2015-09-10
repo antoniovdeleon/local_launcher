@@ -1,5 +1,26 @@
 <div class="container">
+
+	<!-- progress bar -->
+<% if @business %>
+	<%= @business %>
+	<div class="progress">
+  	<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+    	60%
+  	</div>
+  </div>
+ <% else %>
+ 	<div class="progress">
+   	<div class="progress-bar" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%;">
+   		10%
+   	</div>
+	</div>
+<% end %>
+
+
+	<!-- # todo Add user cover page -->
 	<div class="row">
+
+		<!-- Business Info -->
 	  <div class="col-md-3">
 	    <% if @business.avatar %>
 	    	<%= image_tag @business.avatar.url(:medium) %>
@@ -11,53 +32,104 @@
 	    	<% end %>
 	    <% end %>
 	    <h4>Location</h4>	
-	    <%= @business.address %>
+	    <% if @business.address %>
+	    	<%= @business.address %>
+	    <% else %>
+	    	<% if  current_user && current_user.businesses.include?(@business) %>
+	    		<a><%= link_to "Add Your Address!", edit_business_path(@business), class: "btn btn-default form-control" %></a>
+	    	<% else %>
+	    		<p class="well">We'll be posting our address soon!</p>
+	    	<% end %>
+	    <% end %>
 	    <hr>
 	    <h4>Website</h4>	
 	    <!-- #todo use regex to take out everything before the www. -->
-	    <a href= "http://<%= @business.website %>"><%= @business.website %></a>
+	    <% if @business.website %>
+	    	<a href= "http://<%= @business.website %>"><%= @business.website %></a>
+	    <% else %>
+	    	<% if  current_user && current_user.businesses.include?(@business) %>
+	    		<a><%= link_to "Add Your Website!", edit_business_path(@business), class: "btn btn-default form-control" %></a>
+	    	<% else %>
+	    		<p class="well">We'll linking our address soon!</p>
+	    	<% end %>
+	    <% end %>
 	    <hr>
-	    <h4>Category</h4>
-	    <%= @business.category %>
-	    <hr>
+	    <% if @business.category %>
+	    	<h4>Type of Business</h4>
+	    	<%= @business.category %>
+	    	<hr>
+	    <% else %>
+	    	<% if  current_user && current_user.businesses.include?(@business) %>
+	    		<a><%= link_to "Add Category", edit_business_path(@business), class: "btn btn-default form-control" %></a>
+	    		<hr>
+	    	<% end %>
+	    <% end %>
 	    <h4>Date Added</h4>
 	    <%= @business.created_at.strftime("%b %d %Y") %>
+	    <hr>
 	  </div>
+
+	  <!-- Business Name & Description -->
 	  <div class="col-md-9">
-	  	<div class="panel panel-primary">
+	  	<div class="panel panel-success">
 	  		<div class="panel-heading">
 	  			<h1><%= @business.business_name %></h1>
 	  		</div>
+				<div class="panel-body">
+	  			<p><%= @business.introduction %></p>
+	  		</div>
 	  	</div>
-	  	<p><%= @business.introduction %></p>
-	  	<hr>
-	  	<div class="panel panel-success">
+
+
+	  	<!-- Deals -->
+	  	<div class="panel panel-primary">
 	  		<div class="panel-heading">
-	  			<h2>Pre-Opening Deals</h2>
+	  			<h2>Exclusive Pre-Opening Sale<% if @business.user.id == session[:user_id] %>
+  			<%= link_to "Add A Deal", new_business_deal_path(@business), class: "btn btn-default pull-right" %>
+			<% end %></h2>
 	  		</div>
-	  		<div class="row">
-	  			<div class="panel-body">
-	  				<div class="col-md-3">
-	  					<br>
-							<p>Photo goes here</p>
-	  				</div>
-	  				<div class="col-md-7">
-	  					<h4>1lb of Jacobs Wonderbar</h4>
-	  					<p class="help-block">Dark Roast Blends</p>
-	  					<p>named in honor of philz only son jacob. each memorable sip boasts delicious layers of nuts and chocolate filled with a full-bodied flavor and finished without any acidity or bitterness. jacobs wonderbar brew is a dark roast favorite!</p>
-	  				</div>
-	  				<div class="col-md-2">
-	  					<h4 class="pull-right">$7.00</h4>
-	  					<p class="help-block pull-right">Value $14.95</p>
-	  					<br>
-	  					<br>
-	  					<br>
-	  					<br>
-	  					<button class="btn btn-success pull-right">Buy!</button>
-	  				</div>
-	  			</div>
-	  		</div>
+	  		<% if @business.deals.any? %>
+	  			<% @business.deals.each do |deal| %>
+			  		<div class="row">
+			  			<div class="panel-body">
+			  				<div class="col-md-3">
+			  					<br>
+									<p>Photo goes here</p>
+			  				</div>
+			  				<div class="col-md-7">
+			  					<h4><%= deal.name %>
+			  					<% if @business.user.id == session[:user_id] %>
+			  						<%= link_to "", edit_business_deal_path(@business, deal), class:"glyphicon glyphicon-edit" %>
+			  					<% end %></h4>
+			  					<p class="help-block"><%= deal.name2 %></p>
+			  					<p><%= deal.details %></p>
+			  				</div>
+			  				<div class="col-md-2">
+			  					<h4><span class="pull-right">$<%= deal.price %></span></h4>
+			  					<br>
+			  					<p class="help-block"><span class="pull-right">Value $<%= deal.value %></span></p>
+			  					<br>
+			  					<br>
+			  					<button class="btn btn-primary pull-right">Buy!</button>
+			  					<br>
+			  					<br>
+			  				</div>
+			  			</div>
+			  			<hr>
+			  		</div>
+		  		<% end %>
+		  	<% else %>
+		  		<div class="row">
+		  			<div class="panel-body">
+		  				<div class="col-md-12">
+		  					<h4><center>No deals are currently available <p class="help-block">Don't miss out, make sure to check again soon!</p></center></h4>
+		  				</div>
+		  			</div>
+		  		</div>
+	  		<% end %>
 	  	</div>
+
+	  	<!-- show edit button only to business owner -->
 	  </div>
 	</div>
 	<% if current_user && current_user.businesses.include?(@business) %>
@@ -67,5 +139,38 @@
 	<br>
 	<br>
 </div>
+
+<% if false %>
+			<% if @npo.tasks.any? %>
+				<h3>Looking For Developer Help:</h3> <br>
+	    	<% @npo.tasks.each do |task| %>
+	    	<div class="well">
+	  			<p>Project:  <%= link_to task.issue, npo_task_path(@npo, task) %></p>
+	  			<p>Description: <%= task.description %></p>
+  				<% if @npo.user.id == session[:user_id] %>
+  					<%= link_to "Edit Issue", edit_npo_task_path(@npo, task) %>
+  				<% end %>
+  				<% if logged_in? %>
+  					<% if current_user.is_npo == false %>
+  			 			<%= form_for :project, url: projects_path do |f| %>
+								<%= f.hidden_field :task_id, class: "form-control", value: task.id%>
+								<%= f.hidden_field :status, class: "form-control", value: "Pending"%>
+								<%= f.submit "Interested!", class: "btn btn-primary" %>
+           		<% end %>
+        		<% end %>
+        	<% end %>
+	  		</div>
+	  		<% end %>
+	  		<% if @npo.user.id == session[:user_id] %>
+	  			<%= link_to "Add A Task", new_npo_task_path(@npo), class: "btn btn-primary" %>
+				<% end %>
+			<% else %>
+			<h3>No Tasks Currently Available</h3>
+           <% if @npo.user.id == session[:user_id] %>
+          <%= link_to "Add A Task", new_npo_task_path(@npo), class: "btn btn-primary" %>
+        <% end %>
+	  	<% end %>
+      <center>
+<% end %>
 
 
