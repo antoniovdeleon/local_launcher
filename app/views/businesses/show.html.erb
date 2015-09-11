@@ -129,7 +129,7 @@
 			  						<br>
 			  						<br>
 			  						<% if  current_user && current_user.businesses.include?(@business) %>
-			  							<a><%= link_to "Add More Info", edit_business_path(@business, deal), class: "btn btn-default" %></a>
+			  							<a><%= link_to "Add More Info", edit_business_deal_path(@business, deal), class: "btn btn-default" %></a>
 			  						<% end %>
 			  					<% end %>
 			  				

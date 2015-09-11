@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   end
   resources :deals, only: [:index]
 
+  resources :follows, only: [:create]
+
 end
