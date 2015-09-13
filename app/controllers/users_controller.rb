@@ -47,6 +47,8 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     if current_user
       # flash[:notice] = "Successfully updated profile!"
+      # CJ: I would update `current_user` here just in case a user
+      # tries to send a PUT request with a random id
       user.update_attributes(user_params)
       redirect_to profile_path
     else
@@ -59,6 +61,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if current_user
       # flash[:error] = "Successfully deleted profile!"
+      # CJ: I would destroy `current_user` here just in case a user
+      # tries to send a DELETE request with a random id
       @user.destroy
       session[:user_id] = nil
       redirect_to root_path

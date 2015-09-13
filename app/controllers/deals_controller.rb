@@ -31,19 +31,24 @@ class DealsController < ApplicationController
   end
 
   def show 
+    # CJ: opportunity to dry up the `Deal.find` and `Business.find` logic
+    # with private methods since it's repeated in multiple controller actions
   	@deal = Deal.find(params[:id])
+    # CJ: `params[:business_id]`?
   	@business = Business.find(params[:id])
   	render :show
   end
 
   def edit
     @deal = Deal.find(params[:id])
+    # CJ: `@business = @deal.business` is DRYer
     @business = Business.find(@deal.business.id)
     render :edit
   end
 
   def update
     @deal = Deal.find(params[:id])
+    # CJ: `@business = @deal.business` is DRYer
     @business = @deal.business_id 
     # if current_user.@npos.include? @npo
       @deal.update_attributes(deal_params)

@@ -16,7 +16,7 @@ class FollowsController < ApplicationController
 
 	private
 		def follow_params
-			params.require*(:follow).permit(:business_id)
+			params.require(:follow).permit(:business_id)
 		end	
 
 end
