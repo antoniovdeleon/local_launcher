@@ -34,7 +34,12 @@ class BusinessesController < ApplicationController
   end
 
   def show
+    # CJ: opportunity to dry up the `Business.find` logic with a private
+    # method since it's repeated in `show`, `edit`, `update`, and `destroy`
     @business= Business.find(params[:id])
+    # CJ: very cool! move this logic to an instance method
+    # on the business model to clean up the controller
+    # something like `def progress` that runs all the same logic
     @business_progress = 0
     if @business.business_name
       @business_progress = @business_progress + 1
