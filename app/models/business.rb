@@ -1,6 +1,10 @@
-class Business < ActiveRecord::Base
+class Business < ApplicationRecord
 
-	belongs_to :user
+	before_create do
+	   throw(:abort) if you_need_to_halt
+	 end
+	
+	belongs_to :user, required: true # deprecated => `required: true`
 	has_many :follows, dependent: :destroy
 	has_many :deals, dependent: :destroy
 	has_many :users, through: :follows

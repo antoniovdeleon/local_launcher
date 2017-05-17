@@ -1,5 +1,10 @@
-class Deal < ActiveRecord::Base
-	belongs_to :business
+class Deal < ApplicationRecord
+
+  before_create do
+     throw(:abort) if you_need_to_halt
+   end
+   
+	belongs_to :business, required: true # deprecated => `required: true`
 
 	has_attached_file :avatar,
 	                  :styles => { :medium => "150x150>", :thumb => "44x44#" },
