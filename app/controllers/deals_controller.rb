@@ -1,5 +1,5 @@
 class DealsController < ApplicationController
-  # before_filter :authorize, except: [:index, :show]
+  # before_action :authorize, except: [:index, :show]
 
   # show ALL businesss in db
   def index

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  before_filter :authorize, only: [:show]
+  before_action :authorize, only: [:show]
   
   # form to create a new user
   def new

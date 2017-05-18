@@ -1,8 +1,8 @@
 class Deal < ApplicationRecord
 
-  before_create do
-     throw(:abort) if you_need_to_halt
-   end
+  # before_create do
+  #    throw(:abort) if you_need_to_halt
+  #  end
    
 	belongs_to :business, required: true # deprecated => `required: true`
 

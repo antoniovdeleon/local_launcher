@@ -1,8 +1,8 @@
 class User < ApplicationRecord
 
-	before_create do
-    throw(:abort) if you_need_to_halt
-  end
+	# before_create do
+ #    throw(:abort) if you_need_to_halt
+ #  end
 	
 	has_secure_password
 	has_many :businesses, dependent: :destroy

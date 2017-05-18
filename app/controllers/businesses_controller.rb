@@ -1,5 +1,5 @@
 class BusinessesController < ApplicationController
-  before_filter :authorize, except: [:index, :show]
+  before_action :authorize, except: [:index, :show]
 
 
 
