@@ -4,12 +4,12 @@ Kickstarter for Local Businesses
 
 Technologies Used:
 
-* Ruby on Rails
+* Ruby on Rails (Rails 5.1.1)
 
-* jQuery
+* jQuery (updating)
 
 * Paperclip
 
-* Bcrypt
+* Bcrypt (updating)
 
 
